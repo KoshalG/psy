@@ -77,4 +77,13 @@ Create “Jenkinsfile” in the repository and add code from previous step
 Change branches to build to main from master
 Apply save build.
 
+
+docker commands:
+docker images (check images)
+docker run hello-world(run hello world image)
+docker pull ubuntu(gets ubuntu image)
+docker run -id -d ubuntu(runs ubuntu prints id of process)
+copy id
+docker exec -it id(execs container)
+docker ps -a (lists containers)
 	
