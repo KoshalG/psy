@@ -1,0 +1,80 @@
+1)	Build new job->free style project->add parameters (this project is parameterized)->string parameter
+Build project with parameters	
+2)	Go to manage Jenkins -> system -> extended email notification -> select smtp server -> set smtp.gmail.com 
+Set port as 465
+Go to advanced enter credentials
+Username is mail and app password
+Go to email notification add same smtp server
+Go to advanced add port 465
+Check smtp authentication enter email and app password click apply
+Now test config email is sent
+        	Now go to configure project and last option
+	Post build notifications select editable email notifications give , in recipient add your email.
+	Go to configure build, go to source code mgmt select git, add repo https url there.
+	Go below select poll scm in schedule add “* * * * *”
+	Change branch to main from master in Jenkins
+	Then build again
+	Go to github make changes and commit in next polling it should show changes.
+3)	Upstream downstream:
+Create 3 projects
+In first jobs config go to post  build action 
+Select build other projects
+In first job build second job
+In second build third so on
+Go to manage Jenkins intall build pipeline from available pipeline 
+Go to dashboard select views add new
+Add jobs to it.
+4)	Install ngrok
+Run command
+Open github repo go to settings then webhooks
+In ngrok change port to 8081
+Copy forwarding url 
+Add the url to webhook
+5)	Go to security create user
+Install role based authorization plugin from available plugins
+Now go to security select manage and assign roles 
+In security enable role based authorization
+6)	Jenkins file pipeline:
+Go to new create pipeline
+Scroll down to pipeline syntax
+Add this code:
+pipeline {
+    agent any
+
+    stages {
+        stage('1') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('2') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('3') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+    post{
+        always {
+            emailext body: 'LOL', subject: 'LOL', to: 'guptakoshal1@gmail.com'
+        }
+    }
+}
+Build it and check mail for notification
+7)	Jenkins file pipeline:
+Go to new create pipeline
+Scroll down to pipeline syntax
+Enable poll scm
+Schedule * * * * *
+In pipeline definition choose pipeline script from scm
+Choose git in scm
+Create a github repository with readme file 
+Create “Jenkinsfile” in the repository and add code from previous step
+Change branches to build to main from master
+Apply save build.
+
+	
